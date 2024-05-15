@@ -5,7 +5,7 @@ import { RectButton } from "react-native-gesture-handler";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import { ChannelPreviewMessenger, useTheme } from "stream-chat-expo";
 import { Icon } from "@rneui/themed";
-import { chatUserId } from "../chatConfig";
+import { useAppContext } from "../context/AppContext";
 
 const styles = StyleSheet.create({
   rightSwipeableButton: {
@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
 
 export const CustomeListItem = (props) => {
   const { channel } = props;
+  const {chatUserId} = useAppContext();
   const {
     theme: {
       colors: { accent_red, white_smoke },

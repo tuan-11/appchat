@@ -49,7 +49,6 @@ export const AuthContextProvider = ({children})=>{
     useEffect(() => {
       if (userId && userToken) {
         console.log('user:', userId);
-        console.log('name:', userName);
         console.log('token:', userToken);
         navigation.navigate('BottomTabNavigation', { userId: userId, userToken: userToken });
       }
@@ -96,10 +95,12 @@ export const AuthContextProvider = ({children})=>{
           return [];
         }
       };
-
+/////const users = await client.queryUsers({}, { id: 1 });
     const updateUserNameData = async (newName) => {
-      const client = new StreamChat.getInstance('bt2cwnkjayw3', '8u648gm3myz87c2gfrjddbubahyqyydapx6sskcbyqbgagq3bgdyngyu7pw2nk6n');
+      const client = new StreamChat.getInstance('bt2cwnkjayw3');
+      console.log(1);
       const users = await client.queryUsers({}, { id: 1 });
+      console.log(2);
       if (typeof users === 'object' && !Array.isArray(users)) {
         try {
           const userValues = Object.values(users);
@@ -198,7 +199,7 @@ export const AuthContextProvider = ({children})=>{
                 // try {
                 //   const token = await getToken();
                 //   console.log('Token:', token);
-                //   navigation.navigate('BottomTabNavigation');
+                  // navigation.navigate('BottomTabNavigation');
                 // } catch (error) {
                 //   console.error('Error getting token:', error);
                 // }
@@ -206,11 +207,9 @@ export const AuthContextProvider = ({children})=>{
                 // setUserIdChatClient(user2.uid);
 
                 const token = await getToken(user2.uid);
-                console.log("get token "+ token);
+                console.log("get token1 "+ token);
                 setUserId(user2.uid);
                 setUserToken(token);
-                setUserName('Tuan');
-
             } else {
                 alert('Vui lòng xác minh Email!');
                 const actionCodeSettings = {
@@ -233,8 +232,11 @@ export const AuthContextProvider = ({children})=>{
 
     const logout = async ()=>{
         try {
-            const client = new StreamChat.getInstance('bt2cwnkjayw3', '8u648gm3myz87c2gfrjddbubahyqyydapx6sskcbyqbgagq3bgdyngyu7pw2nk6n');
+            const client = new StreamChat.getInstance('bt2cwnkjayw3');
+            console.log("client in logout1: "+ JSON.stringify(client.userID));
             await client.disconnectUser();
+            console.log("client in logout2: "+ JSON.stringify(client.userID));
+            setUserToken(null);
           } catch (error) {
             console.error('Error logging out:', error);
             throw error;

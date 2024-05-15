@@ -17,7 +17,9 @@ import useChatClient from "../api/useChatClient";
 const Stack = createStackNavigator();
 
 const NavigationStack = ({ userId, userToken }) => {
-    const { clientIsReady } = useChatClient(userId, userToken);
+  console.log("navi usser"+userId );
+  console.log("navi token"+userToken);
+    const { clientIsReady} = useChatClient(userId, userToken);
     const chatClient = StreamChat.getInstance(chatApiKey);
     if (!clientIsReady) {
       return (

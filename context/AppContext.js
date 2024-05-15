@@ -15,6 +15,8 @@ export const AppContext = React.createContext({
   setUser: (user) => {},
   searchResults:null,
   setSearchResults:(results)=>{},
+  chatUserId:null,
+  setChatUserId: (chatUserId) => {},
 });
 export const AppProvider = ({ children }) => {
   const [channel, setChannel] = useState();
@@ -23,6 +25,8 @@ export const AppProvider = ({ children }) => {
   const [user, setUser] = useState();
   const [searchResults, setSearchResults] = useState([]);
   const [channelList,setChannelList] = useState([]);
+  const [chatUserId,setChatUserId] = useState();
+  const [chatUserToken, setChatUserToken] = useState();
   return (
     <AppContext.Provider
       value={{
@@ -38,6 +42,8 @@ export const AppProvider = ({ children }) => {
         setSearchResults,
         channelList,
         setChannelList,
+        chatUserId,
+        setChatUserId
       }}
     >
       {children}

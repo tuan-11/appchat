@@ -1,6 +1,7 @@
 async function getToken(id) {
+  
   try {
-    const response = await fetch('http://192.168.1.3:3000/token', {
+    const response = await fetch('http://192.168.1.5:3000/token', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -9,7 +10,6 @@ async function getToken(id) {
         user_id: id,
       }),
     });
-
     const data = await response.json();
 
     if (response.ok) {
@@ -26,7 +26,7 @@ async function getToken(id) {
     return null;
   }
 }
-
+getToken('eulwVMvekvc7VBJsOFVQq231lek1');
 module.exports = {
   getToken,
 };

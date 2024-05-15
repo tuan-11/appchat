@@ -139,11 +139,10 @@ const styles = StyleSheet.create({
   requestContainer: {
     alignItems:'flex-start',
     backgroundColor: '#FFFFFF',
-    height: 500,
+    height: 550,
     justifyContent: 'flex-start',
     borderTopLeftRadius: 40,
     borderTopRightRadius: 40, 
-    top: 220,
     bottom: 0,
     right: 0,
     left: 0,

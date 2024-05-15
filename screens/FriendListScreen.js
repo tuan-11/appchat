@@ -28,12 +28,12 @@ const FriendListScreen = (props) => {
   };
   useEffect(() => {
     console.log('User:', user);
-    if (user.friend_requests) {
+    if (user && user.friend_requests) {
       setFriendRequestCount(user.friend_requests.length);
     } else {
       setFriendRequestCount(0);
     }
-  }, [user.friend_requests]);
+  }, [user]);
   return (
     <View style={{ backgroundColor: "white", flex: 1 }}>
       <SearchComponent

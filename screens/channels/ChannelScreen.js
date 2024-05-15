@@ -2,7 +2,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image, Keyboard, ScrollView, RefreshControl, TouchableWithoutFeedback } from "react-native";
 import { useAppContext } from "../../context/AppContext";
-import { chatUserId } from "../../chatConfig";
 import { Channel } from "stream-chat-expo";
 import { MessageList, MessageInput, ChannelAvatar } from "stream-chat-expo";
 import { SearchBar, Icon } from "@rneui/themed";
@@ -26,11 +25,13 @@ const ChannelScreen = (props) => {
   const handleSearch = async () => {
     setRefreshing(true);
     try {
+      console.log(1);
       const results = await chatClient.search(
         { id: channel.id },
         { text: { $autocomplete: searchTerm } },
         { limit: 15, sort: [{ create_at: -1 }] }
       );
+      console.log(1);
       setSearchResults(results.results);
       searchResults.map((data) =>
         console.log("channelScreen line 42: " + data)
