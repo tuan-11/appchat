@@ -1,6 +1,6 @@
 async function getToken(id) {
   try {
-    const response = await fetch('http://192.168.1.3:3000/token', {
+    const response = await fetch('http://192.168.1.5:3000/token', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

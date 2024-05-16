@@ -67,11 +67,20 @@
       const getUserInfo = async () => {
         try {
           const response = await chatClient.queryUsers({
-            id: { $in: [chatUserId] },
+            id: { $in: [userId] },
           });
-          // if (!response.users[0].friends) {
-          //   partialUpdateUser();
-          // }
+          if (!response.users[0].friends) {
+            try {
+              const updatedUser = await chatClient.partialUpdateUser({
+                id: userId,
+                set: {
+                  friends: [], // Mảng chứa các ID của bạn bè
+                },
+              });
+            } catch (error) {
+              console.error(`An error occurred while update user'prop: ${error.message}`);
+            }
+          }
           setUser(response.users[0]);
         } catch (error) {
           console.error(`An error occurred while getting user: ${error.message}`);
