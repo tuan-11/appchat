@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { View, Button, StyleSheet,TouchableOpacity, Image, Text } from "react-native";
 import { useAppContext } from "../../context/AppContext";
 import { ChannelList} from "stream-chat-expo";
-import { chatUserId } from '../../chatConfig';
 import { CustomPreviewTitle } from "../../components/PreviewTitle";
 import { CustomeListItem } from "../../components/CustomeListItem";
 import SearchHeader from "../../components/SearchHeader";
 
 const ChannelListScreen = (props) => {
-  const { chatClient, setChannel, user: currentUser } = useAppContext();
-  console.log("user current is "+ currentUser);
+  const { chatUserId,setChannel, user: currentUser } = useAppContext();
+  console.log("user current is "+ chatUserId);
+  console.log("user current is "+ JSON.stringify(currentUser));
   const filter = { members: { $in: [chatUserId] } };
   const sort = [{ last_message_at: -1 }];
   const [isSearching, setIsSearching] = useState(false);

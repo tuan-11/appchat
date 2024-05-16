@@ -6,23 +6,6 @@
   import { useAppContext } from "../context/AppContext";
   import { useAuth } from "../context/authContext";
 
-  // const partialUpdateUserQT = async()=>{
-  //   try{
-  //     const updatedUser = await chatClient.partialUpdateUser({
-  //       ...user,
-  //       token: chatUserToken,
-  //       set: {
-  //         friends: [
-  //         ], // Mảng chứa các ID của bạn bè
-  //       },
-  //     });
-  //   }catch(error){
-  //     console.error(
-  //       `An error occurred while update user'prop: ${error.message}`
-  //     );
-  //   }
-  // }
-
   // const partialUpdateUser = async () => {
   //   try {
   //     const updatedUser = await chatClient.partialUpdateUser({
@@ -43,7 +26,8 @@
     timeout: 6 * 1000,
   });
   const useChatClient = (userId, userToken) => {
-    const { setChatClient, setUser,setChannelList } = useAppContext();
+    const { setChatClient, setUser, setChatUserId, chatUserId, chatUserToken } =
+    useAppContext();
     const [clientIsReady, setClientIsReady] = useState(false);
 
     useEffect(() => { 
@@ -56,6 +40,7 @@
           setClientIsReady(true);
           setChatClient(chatClient);
           // partialUpdateUserQT();
+          setChatUserId(userId);
         } catch (error) {
           if (error instanceof Error) {
             console.error(
